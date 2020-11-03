@@ -20,6 +20,7 @@ import logger from '../utils/logger'
  * let them have separate concerns until performance becomes an issue.
  */
 // TODO:(hbergren): Type payId better
+// eslint-disable-next-line import/no-unused-modules -- not used
 export async function checkUserExistence(payId: string): Promise<boolean> {
   const result = await knex.select(
     knex.raw('exists(select 1 from account where pay_id = ?)', payId),
@@ -73,6 +74,7 @@ export async function insertUser(
  *
  * @returns The updated user Account.
  */
+// eslint-disable-next-line import/no-unused-modules -- not used
 export async function replaceUserPayId(
   oldPayId: string,
   newPayId: string,
@@ -98,6 +100,7 @@ export async function replaceUserPayId(
  *
  * @returns The updated payment addresses for a given PayID.
  */
+// eslint-disable-next-line import/no-unused-modules -- not used
 export async function replaceUser(
   oldPayId: string,
   newPayId: string,
@@ -139,6 +142,7 @@ export async function replaceUser(
  *
  * @param payId - The PayID associated with the user to delete.
  */
+// eslint-disable-next-line import/no-unused-modules -- not used
 export async function removeUser(payId: string): Promise<void> {
   await knex<Account>('account')
     .delete()

@@ -1,0 +1,58 @@
+@apiBase = http://localhost:3000/dev
+@payIdApiVersion = 2020-05-28
+
+### Get User
+
+GET {{apiBase}}/users/alice$example.com
+PayID-API-Version: {{payIdApiVersion}} 
+Content-Type: application/json
+
+### Create User
+
+POST {{apiBase}}/users
+PayID-API-Version: {{payIdApiVersion}} 
+Content-Type: application/json
+
+{
+    "payId": "cinnapple$dev2.thepay.id",
+    "addresses": [
+        {
+            "paymentNetwork": "XRPL",
+            "environment": "MAINNET",
+            "addressDetails": {
+                "address": "xrrrrrr"
+            }
+        }
+    ]
+}
+
+### Replace User
+POST {{apiBase}}/users/alice$example.com
+PayID-API-Version: {{payIdApiVersion}} 
+Content-Type: application/json
+
+{
+    "payId": "<string>",
+    "addresses": [
+        {
+            "paymentNetwork": "<string>",
+            "environment": "<string>",
+            "addressDetails": {
+                "address": "<string>"
+            }
+        },
+        {
+            "payment_network": "<string>",
+            "environment": "<string>",
+            "addressDetails": {
+                "address": "<string>"
+            }
+        }
+    ]
+}
+
+### Delete User
+POST {{apiBase}}/users/alice$example.com
+PayID-API-Version: {{payIdApiVersion}} 
+Content-Type: application/json
+

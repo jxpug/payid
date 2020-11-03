@@ -42,6 +42,9 @@
     "@hapi/boom": "^9.1.0",
     "@xpring-eng/http-status": "^1.0.0",
     "@xpring-eng/logger": "^1.0.0",
+    "aws-lambda": "^1.0.6",
+    "aws-sdk": "^2.784.0",
+    "aws-serverless-express": "^3.3.8",
     "express": "^4.17.1",
     "knex": "^0.21.1",
     "knex-stringcase": "^1.4.1",
@@ -53,6 +56,8 @@
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.2",
     "@fintechstudios/eslint-plugin-chai-as-promised": "^3.0.2",
+    "@types/aws-lambda": "^8.10.64",
+    "@types/aws-serverless-express": "^3.3.3",
     "@types/chai": "^4.2.11",
     "@types/chai-as-promised": "^7.1.2",
     "@types/express": "^4.17.6",
@@ -83,6 +88,8 @@
     "nyc": "^15.1.0",
     "prettier": "^2.0.5",
     "run-script-os": "^1.1.1",
+    "serverless": "^2.9.0",
+    "serverless-offline": "^6.8.0",
     "supertest": "^4.0.2",
     "ts-node": "^8.10.2",
     "tsc-watch": "^4.2.9"

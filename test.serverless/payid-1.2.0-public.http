@@ -1,0 +1,11 @@
+@apiBase = http://localhost:3000/dev
+
+GET {{apiBase}}/status/health
+
+###
+
+GET {{apiBase}}/alice
+PayID-Version: 1.0
+Accept: application/xrpl-testnet+json
+
+###

@@ -1,0 +1,41 @@
+service:
+  name: payid-serverless
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  environment:
+    stage: dev2    
+    tableName: payid-accounts-dev2
+    awsRegion: ap-northeast-1
+    awsApiKey: AKIAZJUDJPD62RLBKEXX
+    awsSecret: 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
+
+functions:
+
+  admin:
+    handler: build/src/serverless/handler.admin
+    events:
+      - http:
+          method: any 
+          cors: true
+          path: /users
+      - http:
+          method: any
+          cors: true
+          path: /users/{proxy+}
+
+  public:
+    handler: build/src/serverless/handler.public
+    events:
+      - http:
+          method: get
+          cors: true
+          path: /{payIdUserName}
+      - http:
+          method: get
+          cors: true
+          path: /status/{proxy+}

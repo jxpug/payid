@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express'
 
-import getAllAddressInfoFromDatabase from '../data-access/payIds'
 import createMemo from '../hooks/memo'
+import getAllAddressInfoFromDatabase from '../serverless/data-access/payIds'
 import {
   formatPaymentInfo,
   getPreferredAddressHeaderPair,

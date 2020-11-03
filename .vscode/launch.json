@@ -46,6 +46,18 @@
       ],
       "console": "integratedTerminal",
       "internalConsoleOptions": "neverOpen"
+    },
+    {
+      "name": "Serverless",
+      "type": "node",
+      "request": "launch",
+      "runtimeArgs": ["--inspect", "--debug-port=9229"],
+      "program": "${workspaceRoot}/node_modules/serverless/bin/serverless.js",
+      "args": ["offline"],
+      "port": 9229,
+      "console": "integratedTerminal",
+      "preLaunchTask": "tsc-build",
+      "outFiles": ["${workspaceFolder}/build/**/*.js"]
     }
   ]
 }
