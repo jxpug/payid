@@ -25,11 +25,11 @@ export interface FiatAddressDetails {
 }
 
 /**
- * Payment information included in a PaymentSetupDetails or by itself (in the
- * case of a GET request to the base path /).
+ * The payment information response payload of a PayID Protocol (Public API) request.
  */
 export interface PaymentInformation {
   readonly payId?: string
+  readonly version?: string
   readonly addresses: Address[]
   readonly verifiedAddresses: VerifiedAddress[]
   readonly memo?: string
@@ -38,7 +38,7 @@ export interface PaymentInformation {
 /**
  * Address information included inside of a PaymentInformation object.
  */
-interface Address {
+export interface Address {
   readonly paymentNetwork: string
   readonly environment?: string
   readonly addressDetailsType: AddressDetailsType
@@ -48,20 +48,16 @@ interface Address {
 /**
  * Object containing address information alongside signatures.
  */
-interface VerifiedAddress {
-  readonly payload: VerifiedAddressPayload
+export interface VerifiedAddress {
+  readonly payload: string
   readonly signatures: readonly VerifiedAddressSignature[]
-}
-
-interface VerifiedAddressPayload {
-  payId: string
-  payIdAddress: Address
 }
 
 /**
  * JWS object for verification.
  */
-interface VerifiedAddressSignature {
+export interface VerifiedAddressSignature {
+  name?: string
   protected: string
   signature: string
 }

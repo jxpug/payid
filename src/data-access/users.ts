@@ -95,6 +95,7 @@ export async function replaceUserPayId(
  * @param oldPayId - The old PayID of the user.
  * @param newPayId - The new PayID of the user.
  * @param addresses - The array of payment address information to associate with this user.
+ * @param identityKey - The optional user identity key.
  *
  * @returns The updated payment addresses for a given PayID.
  */
@@ -102,11 +103,12 @@ export async function replaceUser(
   oldPayId: string,
   newPayId: string,
   addresses: readonly AddressInformation[],
+  identityKey?: string,
 ): Promise<readonly AddressInformation[] | null> {
   return knex.transaction(async (transaction: Transaction) => {
     const updatedAddresses = await knex<Account>('account')
       .where('payId', oldPayId)
-      .update({ payId: newPayId })
+      .update({ payId: newPayId, identityKey })
       .transacting(transaction)
       .returning('id')
       .then(async (ids: ReadonlyArray<string | undefined>) => {
@@ -162,6 +164,7 @@ export async function removeUser(payId: string): Promise<void> {
 
 interface DatabaseAddress extends AddressInformation {
   readonly accountId: string
+  readonly identityKeySignature?: string
 }
 
 /**
@@ -182,6 +185,7 @@ function addAccountIdToAddresses(
     paymentNetwork: address.paymentNetwork.toUpperCase(),
     environment: address.environment?.toUpperCase(),
     details: address.details,
+    identityKeySignature: address.identityKeySignature,
   }))
 }
 
@@ -207,5 +211,10 @@ async function insertAddresses(
     .insert(addresses)
     .into<Address>('address')
     .transacting(transaction)
-    .returning(['paymentNetwork', 'environment', 'details'])
+    .returning([
+      'paymentNetwork',
+      'environment',
+      'details',
+      'identityKeySignature',
+    ])
 }
